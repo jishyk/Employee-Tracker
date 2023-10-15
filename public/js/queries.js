@@ -3,12 +3,17 @@ const mysql = require('mysql2/promise');
 let connection;
 
 const initDBConnection = async () => {
-    connection = await mysql.createConnection({
-        host: 'localhost',
-        user: 'root',
-        password: 'mypassword',
-        database: 'employee_tracker'
-    });
+    try {
+        connection = await mysql.createConnection({
+            host: process.env.DB_HOST,
+            user: process.env.DB_USER,
+            password: process.env.DB_PASSWORD,
+            database: process.env.DB_NAME,
+        });
+        console.log('Connected to the database.');
+    } catch (err) {
+        console.error('Error connecting to the database:', err);
+    }
 };
 
 const closeDBConnection = () => {
@@ -45,14 +50,11 @@ const viewAllEmployees = async () => {
     `);
     return rows;
 };
-
-// More queries as per your requirement...
-
 module.exports = {
     initDBConnection,
     closeDBConnection,
     viewAllDepartments,
     viewAllRoles,
     viewAllEmployees
-    // Export other query functions as needed
+   
 };

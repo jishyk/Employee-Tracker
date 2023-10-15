@@ -1,5 +1,5 @@
 const mysql = require('mysql2/promise');
-require('dotenv').config(); // Make sure you have the dotenv package installed
+require('dotenv').config();
 
 let connection;
 
@@ -27,7 +27,7 @@ const getDBConnection = () => {
 
 const closeDBConnection = async () => {
     if (connection) {
-        await connection.end();
+      connection.end();
         console.log("DB Connection Closed!");
     }
 };

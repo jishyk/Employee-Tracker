@@ -55,6 +55,6 @@ module.exports = {
     closeDBConnection,
     viewAllDepartments,
     viewAllRoles,
-    viewAllEmployees
+    viewAllEmployees,
    
 };

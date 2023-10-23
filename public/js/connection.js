@@ -14,7 +14,7 @@ const initDBConnection = async () => {
     console.log("DB Connected!");
   } catch (error) {
     console.error('Error:', error);
-    process.exit(1); // Exits the process in case of an error
+    process.exit(1);
   }
 };
 

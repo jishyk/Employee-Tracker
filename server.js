@@ -37,7 +37,7 @@ const init = async () => {
                     break;
                 case 'Add a role':
                     const departmentsForRole = await viewAllDepartments();
-                    const departmentChoicesForRole = departmentsForRole.map(dept => ({
+                    const departmentChoices = departmentsForRole.map(dept => ({
                         name: dept.name,
                         value: dept.id
                     }));
@@ -62,7 +62,7 @@ const init = async () => {
                             type: 'list',
                             name: 'departmentId',
                             message: 'Which department does this role belong to?',
-                            choices: departmentChoicesForRole
+                            choices: departmentChoices
                         }
                     ]);
 

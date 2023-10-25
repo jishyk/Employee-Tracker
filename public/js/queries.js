@@ -15,9 +15,6 @@ const initDBConnection = async () => {
         console.error('Error connecting to the database:', err);
     }
 };
-
-
-
 const closeDBConnection = () => {
     if (connection) {
         connection.end();
@@ -32,7 +29,6 @@ const viewAllDepartments = async () => {
         console.error('Error fetching departments:', err);
     }
 };
-
 const viewAllRoles = async () => {
     try {
         const [rows] = await connection.execute(`
@@ -45,8 +41,6 @@ const viewAllRoles = async () => {
         console.error('Error fetching roles:', err);
     }
 };
-
-
 const viewAllEmployees = async () => {
     try {
         const [rows] = await connection.execute(`
@@ -63,19 +57,14 @@ const viewAllEmployees = async () => {
         console.error('Error fetching employees:', err);
     }
 };
-
-
 const addDepartment = async (departmentName) => {
-    // Add the department to the database
+
     try {
         await connection.execute('INSERT INTO department (name) VALUES (?)', [departmentName]);
     } catch (error) {
         console.error('Error adding the department:', error);
     }
 };
-
-
-
 const addRole = async (title, salary, department_id) => {
     try {
         const [result] = await connection.execute(
@@ -87,7 +76,6 @@ const addRole = async (title, salary, department_id) => {
         console.error('Error adding role:', err);
     }
 };
-
 const addEmployee = async (first_name, last_name, role_id, manager_id = null) => {
     try {
         const [result] = await connection.execute(
@@ -99,8 +87,11 @@ const addEmployee = async (first_name, last_name, role_id, manager_id = null) =>
         console.error('Error adding employee:', err);
     }
 };
-
 const updateEmployeeRole = async (employee_id, new_role_id) => {
+    if (!employee_id || !new_role_id) {
+        throw new Error('Employee ID or Role ID is not defined.');
+    }
+
     try {
         const [result] = await connection.execute(
             'UPDATE employee SET role_id = ? WHERE id = ?',

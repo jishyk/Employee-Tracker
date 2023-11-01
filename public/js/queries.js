@@ -105,6 +105,7 @@ const updateEmployeeRole = async (employee_id, new_role_id) => {
     }
 };
 
+
 module.exports = {
     initDBConnection,
     closeDBConnection,

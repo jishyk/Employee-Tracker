@@ -20,6 +20,10 @@ const init = async () => {
                     const roles = await viewAllRoles();
                     console.table(roles);
                     break;
+                case 'View all employees':
+                    const employees = await viewAllEmployees();
+                    console.table(employees);
+                    break;
                 case 'Add a department':
                     const { departmentName } = await inquirer.prompt({
                         type: 'input',
@@ -126,16 +130,10 @@ const init = async () => {
                     await updateEmployeeRole(employeeIdToUpdate, newRoleId);
                     console.log("Employee's role updated successfully!");
                     break;
-                        
-                case 'View all employees':
-                    const employees = await viewAllEmployees();
-                    console.table(employees);
-                    break;
                 case 'Exit':
                     exitApp = true;
                     break;
                 default:
-                    console.log(`Action: ${action} is not yet implemented`);
             }
         }
     } catch (error) {

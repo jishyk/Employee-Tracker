@@ -1,5 +1,6 @@
 const mysql = require('mysql2/promise');
 
+
 let connection;
 
 const initDBConnection = async () => {
@@ -57,6 +58,7 @@ const viewAllEmployees = async () => {
         console.error('Error fetching employees:', err);
     }
 };
+
 const addDepartment = async (departmentName) => {
 
     try {
